@@ -259,14 +259,24 @@ export function ProfilePage({ language, onNavigate, onGoBack, setLanguage, onMen
                 )}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span 
-                    className="px-3 py-1 backdrop-blur-sm rounded-full text-sm"
-                    style={{ backgroundColor: 'rgba(224, 224, 224, 0.3)' }}
+                    className="px-3 py-1.5 backdrop-blur-sm rounded-full text-sm"
+                    style={{ 
+                      backgroundColor: 'transparent',
+                      color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                      border: '1px solid',
+                      borderColor: '#4A6A90'
+                    }}
                   >
                     {getRoleName(userRoleId, language)}
                   </span>
                   <span 
-                    className="px-3 py-1 backdrop-blur-sm rounded-full text-sm flex items-center gap-1"
-                    style={{ backgroundColor: 'rgba(238, 108, 77, 0.2)' }}
+                    className="px-3 py-1.5 backdrop-blur-sm rounded-full text-sm flex items-center gap-1.5"
+                    style={{ 
+                      backgroundColor: 'transparent',
+                      color: isDarkMode ? '#F07D60' : '#EE6C4D',
+                      border: '1px solid',
+                      borderColor: '#F07D60'
+                    }}
                   >
                     <Trophy className="w-4 h-4" />
                     {permissions.multiplier}x {t.multiplier}
@@ -276,16 +286,19 @@ export function ProfilePage({ language, onNavigate, onGoBack, setLanguage, onMen
             </div>
             <button 
               onClick={handleEditClick}
-              className="absolute top-2 right-2 px-4 py-1 backdrop-blur-sm rounded-full transition-colors flex items-center justify-center gap-1.5 text-xs z-10 min-w-[90px]"
+              className="absolute top-2 right-2 px-4 py-1.5 backdrop-blur-sm rounded-full transition-colors flex items-center justify-center gap-1.5 text-xs z-10 min-w-[90px]"
               style={{ 
-                backgroundColor: 'rgba(224, 224, 224, 0.3)',
+                backgroundColor: 'transparent',
                 color: 'white',
+                border: '1px solid rgba(255,255,255,0.3)'
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(224, 224, 224, 0.4)';
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(224, 224, 224, 0.3)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
               }}
             >
               <Edit className="w-3.5 h-3.5" />
@@ -455,8 +468,13 @@ export function ProfilePage({ language, onNavigate, onGoBack, setLanguage, onMen
                       <p className="mb-2" style={{ color: isDarkMode ? '#94a3b8' : '#3D5A80' }}>{activity.action}</p>
                       <div className="flex items-center gap-3 text-sm">
                         <span 
-                          className="px-2 py-1 rounded"
-                          style={{ backgroundColor: 'rgba(224, 224, 224, 0.3)', color: '#3D5A80' }}
+                          className="px-3 py-1 rounded-full text-xs"
+                          style={{ 
+                            backgroundColor: 'transparent',
+                            color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                            border: '1px solid',
+                            borderColor: '#4A6A90'
+                          }}
                         >
                           {activity.category}
                         </span>
@@ -481,26 +499,34 @@ export function ProfilePage({ language, onNavigate, onGoBack, setLanguage, onMen
                       className="flex items-center gap-4 p-4 rounded-lg border-2 transition-all"
                       style={{
                         borderColor: role.current 
-                          ? '#D0D0D0' 
+                          ? '#F07D60' 
                           : role.completed 
-                          ? '#3D5A80' 
-                          : isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.15)',
-                        backgroundColor: role.current
-                          ? 'rgba(224, 224, 224, 0.3)'
-                          : role.completed
-                          ? 'rgba(61, 90, 128, 0.05)'
-                          : isDarkMode ? '#0f172a' : 'white'
+                          ? '#4A6A90' 
+                          : isDarkMode ? 'rgba(255,255,255,0.2)' : 'rgba(74, 106, 144, 0.4)',
+                        borderRadius: '0.75rem',
+                        borderWidth: '1px',
+                        backgroundColor: 'transparent',
+                        color: isDarkMode ? '#e5e7eb' : '#293241'
                       }}
                     >
                       <div 
                         className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{
                           backgroundColor: role.current
-                            ? '#D0D0D0'
+                            ? 'transparent'
                             : role.completed
-                            ? '#3D5A80'
-                            : 'rgba(61, 90, 128, 0.15)',
-                          color: role.current || role.completed ? 'white' : '#9E9E9E'
+                            ? 'transparent'
+                            : 'transparent',
+                          border: role.current
+                            ? '1px solid #F07D60'
+                            : role.completed
+                            ? '1px solid #4A6A90'
+                            : '1px solid rgba(74, 106, 144, 0.4)',
+                          color: role.current 
+                            ? '#F07D60'
+                            : role.completed
+                            ? '#4A6A90'
+                            : isDarkMode ? '#94a3b8' : '#9E9E9E'
                         }}
                       >
                         {role.completed ? '✓' : role.level}
@@ -550,12 +576,13 @@ export function ProfilePage({ language, onNavigate, onGoBack, setLanguage, onMen
               <h2 className="mb-6" style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{language === 'TR' ? 'Rozetler' : 'Badges'}</h2>
               <div className="grid grid-cols-2 gap-3">
                 {badges.map((badge, index) => (
-                  <div
+                    <div
                     key={index}
-                    className="p-4 rounded-lg border-2 text-center transition-all"
+                    className="p-4 rounded-lg text-center transition-all"
                     style={{
-                      borderColor: badge.unlocked ? '#EE6C4D' : isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.15)',
-                      backgroundColor: badge.unlocked ? 'rgba(238, 108, 77, 0.05)' : isDarkMode ? '#0f172a' : 'rgba(224, 251, 252, 0.3)',
+                      border: '1px solid',
+                      borderColor: badge.unlocked ? '#F07D60' : isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.15)',
+                      backgroundColor: 'transparent',
                       opacity: badge.unlocked ? 1 : 0.5
                     }}
                   >

@@ -651,24 +651,25 @@ export function MainContent({ onNavigate, language, setLanguage, onMenuClick, on
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`group relative overflow-hidden rounded-xl p-3 transition-all hover:scale-105 ${
+              className={`group relative overflow-hidden rounded-full p-3 transition-all hover:scale-105 ${
                 activeCategory === category.id
                   ? 'shadow-lg'
                   : 'border hover:shadow-md'
               }`}
               style={activeCategory === category.id ? {
-                backgroundColor: '#3D5A80'
+                backgroundColor: isDarkMode ? 'transparent' : '#E0FBFC',
+                color: isDarkMode ? '#e5e7eb' : '#3D5A80',
+                border: isDarkMode ? '1px solid #4A6A90' : '1px solid #E0FBFC'
               } : { 
-                backgroundColor: isDarkMode ? '#1e293b' : 'white',
+                backgroundColor: 'transparent',
+                color: isDarkMode ? '#94a3b8' : '#293241',
+                border: '1px solid',
+                borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(41, 50, 65, 0.2)'
               }}
             >
               <div className="relative flex flex-col items-center gap-1.5">
-                <category.icon className={`w-5 h-5 ${
-                  activeCategory === category.id ? 'text-white' : ''
-                }`} style={activeCategory !== category.id ? { color: isDarkMode ? '#94a3b8' : '#3D5A80' } : {}} />
-                <span className={`text-xs text-center ${
-                  activeCategory === category.id ? 'text-white' : ''
-                }`} style={activeCategory !== category.id ? { color: isDarkMode ? '#e5e7eb' : '#293241' } : {}}>
+                <category.icon className="w-5 h-5" style={activeCategory === category.id ? { color: isDarkMode ? '#4A6A90' : '#3D5A80' } : { color: isDarkMode ? '#94a3b8' : '#293241' }} />
+                <span className="text-xs text-center" style={activeCategory === category.id ? { color: isDarkMode ? '#4A6A90' : '#3D5A80' } : { color: isDarkMode ? '#94a3b8' : '#293241' }}>
                   {category.label}
                 </span>
               </div>
@@ -922,9 +923,13 @@ export function MainContent({ onNavigate, language, setLanguage, onMenuClick, on
 
                   {/* Coin Badge */}
                   <div className="mt-3 flex items-center gap-2 justify-end">
-                    <div className="flex items-center gap-1 px-3 py-1.5 rounded-lg" style={{ backgroundColor: 'rgba(238, 108, 77, 0.1)' }}>
-                      <Coins className="w-4 h-4" style={{ color: '#EE6C4D' }} />
-                      <span className="text-sm" style={{ color: '#EE6C4D' }}>
+                    <div className="flex items-center gap-1 px-3 py-1.5 rounded-full" style={{ 
+                      backgroundColor: isDarkMode ? 'transparent' : 'rgba(238, 108, 77, 0.1)',
+                      border: isDarkMode ? '1px solid #F07D60' : 'none',
+                      color: '#EE6C4D'
+                    }}>
+                      <Coins className="w-4 h-4" />
+                      <span className="text-sm">
                         +{contrib.type === 'wiki' ? '100' : '20'} GençCoin
                       </span>
                     </div>
@@ -988,7 +993,11 @@ export function MainContent({ onNavigate, language, setLanguage, onMenuClick, on
                     {item.type === 'wiki' ? <BookOpen className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
                     <span>{item.contentType}</span>
                   </span>
-                  <span className="text-sm backdrop-blur-sm bg-white/90 px-3 py-1.5 rounded-xl" style={{ color: '#3D5A80' }}>{item.category}</span>
+                  <span className="text-sm backdrop-blur-sm px-3 py-1.5 rounded-full" style={{ 
+                    backgroundColor: isDarkMode ? 'transparent' : '#E0FBFC',
+                    color: isDarkMode ? '#e5e7eb' : '#3D5A80',
+                    border: isDarkMode ? '1px solid #4A6A90' : 'none'
+                  }}>{item.category}</span>
                 </div>
               </div>
             </div>
@@ -1020,10 +1029,10 @@ export function MainContent({ onNavigate, language, setLanguage, onMenuClick, on
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm" style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{item.author}</span>
-                      <span className="px-2 py-0.5 text-xs rounded-lg border whitespace-nowrap" style={{
-                        background: 'linear-gradient(90deg, rgba(224, 224, 224, 0.3), rgba(240, 240, 240, 0.3))',
+                      <span className="px-2 py-1 text-xs rounded-full whitespace-nowrap" style={{
+                        backgroundColor: isDarkMode ? 'transparent' : '#E0FBFC',
                         color: isDarkMode ? '#e5e7eb' : '#3D5A80',
-                        borderColor: 'rgba(208, 208, 208, 0.5)'
+                        border: isDarkMode ? '1px solid #4A6A90' : 'none'
                       }}>
                         {item.authorRole}
                       </span>
@@ -1453,10 +1462,13 @@ export function MainContent({ onNavigate, language, setLanguage, onMenuClick, on
                                   }
                                 );
                               }}
-                              className="px-4 py-2 rounded-lg transition-all hover:opacity-90 active:scale-95 flex items-center gap-2"
+                              className="px-4 py-2 rounded-full transition-all hover:opacity-90 active:scale-95 flex items-center gap-2"
                               style={{
-                                backgroundColor: '#EE6C4D',
-                                color: 'white'
+                                backgroundColor: 'transparent',
+                                color: isDarkMode ? '#e5e7eb' : '#293241',
+                                border: '1px solid',
+                                borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : '#293241',
+                                border: 'none'
                               }}
                             >
                               <MessageCircle className="w-4 h-4" />

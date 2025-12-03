@@ -14,7 +14,6 @@ import { AIChatBot } from './components/AIChatBot';
 import { AuthPage } from './components/AuthPage';
 import { Language } from './utils/translations';
 import { Toaster } from 'sonner@2.0.3';
-import './styles/mobile-fix.css';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -72,7 +71,11 @@ export default function App() {
   const handleRegister = (firstName: string, lastName: string, email: string, cardID: string) => {
     // Set user profile from registration
     setProfileName(`${firstName} ${lastName}`);
-    setProfileUsername(email.split('@')[0]); // Use email username part
+    
+    // Create username from first name and last name (lowercase, no spaces)
+    const generatedUsername = `${firstName.toLowerCase()}${lastName.toLowerCase()}`.replace(/\s+/g, '');
+    setProfileUsername(email ? email.split('@')[0] : generatedUsername); // Use email username if available, otherwise use name-based username
+    
     setProfileEmail(email);
     setGencKulturKartID(cardID);
     setProfileBio('');
@@ -86,6 +89,9 @@ export default function App() {
     
     // Login the user
     setIsAuthenticated(true);
+    
+    // Set document title to the user's name
+    document.title = `${firstName} ${lastName}`;
   };
 
   const handleUpdateProfile = (name: string, username: string, bio: string, photoUrl?: string) => {

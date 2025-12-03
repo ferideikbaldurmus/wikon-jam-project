@@ -516,12 +516,13 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
               onClick={() => setSelectedCategory(category)}
               className="px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors text-sm"
               style={category === selectedCategory ? {
-                backgroundColor: '#3D5A80',
-                color: 'white'
+                backgroundColor: '#293241',
+                color: 'white',
+                border: 'none'
               } : { 
-                backgroundColor: isDarkMode ? '#1e293b' : 'white',
-                color: isDarkMode ? '#e5e7eb' : '#293241',
-                border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(61, 90, 128, 0.15)'
+                backgroundColor: 'transparent',
+                color: isDarkMode ? '#94a3b8' : '#293241',
+                border: '1px solid #293241'
               }}
             >
               {category}
@@ -614,13 +615,18 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <span className="px-3 py-1 rounded-full text-sm" style={{
-                          backgroundColor: 'rgba(61, 90, 128, 0.1)',
-                          color: '#3D5A80'
+                        <span className="px-3 py-1 rounded-md text-sm" style={{
+                          backgroundColor: '#1e293b',
+                          color: 'white',
+                          border: 'none'
                         }}>
                           {categoryDisplayMap[contrib.category] || contrib.category}
                         </span>
-                        <span className="px-3 py-1 rounded-full text-sm text-white" style={{ backgroundColor: '#EE6C4D' }}>
+                        <span className="px-3 py-1 rounded-md text-sm" style={{ 
+                          backgroundColor: '#1e293b',
+                          color: 'white',
+                          border: 'none'
+                        }}>
                           {language === 'TR' ? 'YENİ' : 'NEW'}
                         </span>
                       </div>
@@ -645,7 +651,7 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{profileName || 'Sen'}</span>
-                        <span className="px-2 py-0.5 rounded text-xs" style={{
+                        <span className="px-2 py-1 rounded-full text-xs" style={{
                           backgroundColor: 'rgba(61, 90, 128, 0.1)',
                           color: '#3D5A80'
                         }}>
@@ -691,16 +697,20 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 rounded-full text-sm" style={{
-                      backgroundColor: 'rgba(61, 90, 128, 0.1)',
-                      color: '#3D5A80'
+                    <span className="px-3 py-1.5 rounded-full text-sm" style={{
+                      backgroundColor: 'transparent',
+                      color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                      border: '1px solid',
+                      borderColor: '#4A6A90'
                     }}>
                       {discussion.category}
                     </span>
                     {discussion.trending && (
                       <span className="px-3 py-1 rounded-full text-sm flex items-center gap-1" style={{
-                        backgroundColor: 'rgba(238, 108, 77, 0.1)',
-                        color: '#EE6C4D'
+                        backgroundColor: 'transparent',
+                        color: isDarkMode ? '#F07D60' : '#EE6C4D',
+                        border: '1px solid',
+                        borderColor: '#F07D60'
                       }}>
                         <TrendingUp className="w-3 h-3" />
                         {t.trend}
@@ -724,9 +734,11 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{discussion.author}</span>
-                    <span className="px-2 py-0.5 rounded text-xs" style={{
-                      backgroundColor: 'rgba(61, 90, 128, 0.1)',
-                      color: '#3D5A80'
+                    <span className="px-2 py-1 rounded-full text-xs" style={{
+                      backgroundColor: 'transparent',
+                      color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                      border: '1px solid',
+                      borderColor: '#4A6A90'
                     }}>
                       {discussion.authorRole}
                     </span>
@@ -783,9 +795,11 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                               </div>
                               <div>
                                 <span className="text-sm" style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{comment.author}</span>
-                                <span className="ml-2 px-2 py-0.5 rounded text-xs" style={{
-                                  backgroundColor: 'rgba(61, 90, 128, 0.1)',
-                                  color: '#3D5A80'
+                                <span className="ml-2 px-2 py-1 rounded-full text-xs" style={{
+                                  backgroundColor: 'transparent',
+                                  color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                                  border: '1px solid',
+                                  borderColor: '#4A6A90'
                                 }}>
                                   {comment.authorRole}
                                 </span>
@@ -810,22 +824,26 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                                   <button
                                     key={option.id}
                                     onClick={() => handleRateComment(discussion.id, comment.id, option.id)}
-                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs transition-all"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs transition-all"
                                     style={isActive ? {
-                                      backgroundColor: option.activeBg,
-                                      color: option.color,
-                                      border: `2px solid ${option.color}`
+                                      backgroundColor: 'transparent',
+                                      color: isDarkMode ? '#e5e7eb' : '#4A6A90',
+                                      border: '1px solid',
+                                      borderColor: '#4A6A90'
                                     } : {
-                                      backgroundColor: option.bgColor,
-                                      color: option.color,
-                                      border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(61, 90, 128, 0.1)'
+                                      backgroundColor: 'transparent',
+                                      color: isDarkMode ? '#94a3b8' : '#293241',
+                                      border: '1px solid',
+                                      borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : '#293241'
                                     }}
                                   >
                                     <Icon className="w-3.5 h-3.5" />
                                     <span>{option.label}</span>
                                     {count > 0 && (
-                                      <span className="ml-0.5 px-1.5 py-0.5 rounded-full text-xs" style={{
-                                        backgroundColor: isActive ? 'rgba(255, 255, 255, 0.5)' : 'rgba(61, 90, 128, 0.1)'
+                                      <span className="ml-0.5 px-1.5 py-1 rounded-full text-xs" style={{
+                                        backgroundColor: 'transparent',
+                                        border: '1px solid',
+                                        borderColor: isActive ? '#4A6A90' : (isDarkMode ? 'rgba(255,255,255,0.1)' : '#293241')
                                       }}>
                                         {count}
                                       </span>
@@ -858,24 +876,21 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                           <button
                             key={index}
                             onClick={() => setNewComment(suggestion)}
-                            className="w-full text-left px-4 py-2 rounded-lg text-sm border transition-colors"
+                            className="w-full text-left px-4 py-2 rounded-full text-sm transition-colors"
                             style={{ 
-                              backgroundColor: newComment === suggestion 
-                                ? (isDarkMode ? 'rgba(61, 90, 128, 0.2)' : 'rgba(61, 90, 128, 0.1)')
-                                : (isDarkMode ? '#1e293b' : 'white'),
+                              backgroundColor: 'transparent',
                               color: isDarkMode ? '#e5e7eb' : '#293241',
-                              borderColor: newComment === suggestion 
-                                ? '#3D5A80' 
-                                : (isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.15)')
+                              border: '1px solid',
+                              borderColor: newComment === suggestion ? '#4A6A90' : (isDarkMode ? 'rgba(255,255,255,0.1)' : '#293241')
                             }}
                             onMouseEnter={(e) => {
                               if (newComment !== suggestion) {
-                                e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(61, 90, 128, 0.1)' : 'rgba(224, 224, 224, 0.3)';
+                                e.currentTarget.style.borderColor = '#4A6A90';
                               }
                             }}
                             onMouseLeave={(e) => {
                               if (newComment !== suggestion) {
-                                e.currentTarget.style.backgroundColor = isDarkMode ? '#1e293b' : 'white';
+                                e.currentTarget.style.borderColor = isDarkMode ? 'rgba(255,255,255,0.1)' : '#293241';
                               }
                             }}
                           >
@@ -907,8 +922,12 @@ export function DiscussPage({ language, onNavigate, onGoBack, setLanguage, onMen
                       <button
                         onClick={() => handleAddComment(discussion.id)}
                         disabled={!newComment.trim()}
-                        className="px-2 md:px-4 py-2 text-white rounded-lg transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:opacity-90 flex-shrink-0"
-                        style={{ backgroundColor: '#3D5A80' }}
+                        className="px-2 md:px-4 py-2 rounded-full transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:opacity-90 flex-shrink-0"
+                        style={{ 
+                          backgroundColor: '#293241',
+                          color: 'white',
+                          border: 'none'
+                        }}
                       >
                         <Send className="w-4 h-4" />
                         <span className="hidden md:inline">Gönder</span>

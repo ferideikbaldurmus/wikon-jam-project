@@ -202,7 +202,7 @@ export function LeaderboardPage({ language, onNavigate, onGoBack, setLanguage, o
                 </div>
                 <h3 className="mb-1">{user.name}</h3>
                 <div className="text-white/80 text-sm mb-3">{user.username}</div>
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 mb-2">
+                <div className="backdrop-blur-sm rounded-lg p-3 mb-2" style={{ border: '1px solid rgba(255, 255, 255, 0.3)', backgroundColor: 'transparent' }}>
                   <div className="text-sm text-white/90 mb-1">{user.role}</div>
                   <div className="flex items-center justify-center gap-2">
                     <Coins className="w-5 h-5" />
@@ -292,15 +292,17 @@ export function LeaderboardPage({ language, onNavigate, onGoBack, setLanguage, o
                       <span 
                         className="px-3 py-1 rounded-full text-sm"
                         style={{
-                          backgroundColor: 
-                            user.role === t.konyaWise ? 'rgba(238, 108, 77, 0.1)' :
-                            user.role === t.curiousExplorer ? 'rgba(208, 208, 208, 0.5)' :
-                            user.role === t.explorer ? 'rgba(61, 90, 128, 0.1)' :
-                            'rgba(224, 224, 224, 0.3)',
-                          color:
-                            user.role === t.konyaWise ? '#EE6C4D' :
-                            user.role === t.curiousExplorer ? '#9E9E9E' :
-                            user.role === t.explorer ? '#3D5A80' :
+                          backgroundColor: 'transparent',
+                          border: '1px solid',
+                          borderColor: 
+                            user.role === t.konyaWise ? '#F07D60' :
+                            user.role === t.curiousExplorer ? '#4A6A90' :
+                            user.role === t.explorer ? '#4A6A90' :
+                            '#9E9E9E',
+                          color: 
+                            user.role === t.konyaWise ? (isDarkMode ? '#F07D60' : '#EE6C4D') :
+                            user.role === t.curiousExplorer ? (isDarkMode ? '#e5e7eb' : '#4A6A90') :
+                            user.role === t.explorer ? (isDarkMode ? '#e5e7eb' : '#4A6A90') :
                             '#9E9E9E'
                         }}
                       >

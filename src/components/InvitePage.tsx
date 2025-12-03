@@ -207,31 +207,34 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
             </p>
             <div className="flex flex-wrap gap-2">
               <span 
-                className="px-3 py-1 rounded-full text-sm border"
-                style={{ 
-                  backgroundColor: isDarkMode ? '#334155' : 'white',
-                  color: isDarkMode ? '#e2e8f0' : '#293241', 
-                  borderColor: isDarkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(61, 90, 128, 0.2)' 
+                className="px-3 py-1 rounded-full text-sm"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '1px solid',
+                  borderColor: '#F07D60',
+                  color: isDarkMode ? '#F07D60' : '#EE6C4D'
                 }}
               >
                 ✨ Her davet = 50 Coin
               </span>
               <span 
-                className="px-3 py-1 rounded-full text-sm border"
-                style={{ 
-                  backgroundColor: isDarkMode ? '#334155' : 'white',
-                  color: isDarkMode ? '#e2e8f0' : '#293241', 
-                  borderColor: isDarkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(61, 90, 128, 0.2)' 
+                className="px-3 py-1 rounded-full text-sm"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '1px solid',
+                  borderColor: '#4A6A90',
+                  color: isDarkMode ? '#e5e7eb' : '#4A6A90'
                 }}
               >
                 🎯 Sınırsız davet hakkı
               </span>
               <span 
-                className="px-3 py-1 rounded-full text-sm border"
-                style={{ 
-                  backgroundColor: isDarkMode ? '#334155' : 'white',
-                  color: isDarkMode ? '#e2e8f0' : '#293241', 
-                  borderColor: isDarkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(61, 90, 128, 0.2)' 
+                className="px-3 py-1 rounded-full text-sm"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '1px solid',
+                  borderColor: '#4A6A90',
+                  color: isDarkMode ? '#e5e7eb' : '#4A6A90'
                 }}
               >
                 🚀 Hızlı coin kazanımı
@@ -272,8 +275,8 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
             />
             <button
               onClick={handleCopyLink}
-              className="px-4 py-3 text-white rounded-lg transition-opacity hover:opacity-90 flex items-center gap-2"
-              style={{ backgroundColor: '#3D5A80' }}
+              className="px-4 py-3 text-white rounded-full transition-opacity hover:opacity-90 flex items-center gap-2"
+              style={{ backgroundColor: '#293241' }}
             >
               {copied ? (
                 <>
@@ -307,8 +310,8 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
                     style: { background: '#3D5A80', color: '#E0FBFC', border: '2px solid #D0D0D0' }
                   });
                 }}
-                className="px-2 py-2 text-white rounded-lg transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
-                style={{ backgroundColor: '#3D5A80' }}
+                className="px-2 py-2 text-white rounded-full transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
+                style={{ backgroundColor: '#293241' }}
               >
                 <Facebook className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden lg:inline">Facebook</span>
@@ -327,8 +330,8 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
                     style: { background: '#3D5A80', color: '#E0FBFC', border: '2px solid #D0D0D0' }
                   });
                 }}
-                className="px-2 py-2 text-white rounded-lg transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
-                style={{ backgroundColor: '#D0D0D0' }}
+                className="px-2 py-2 text-white rounded-full transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
+                style={{ backgroundColor: '#293241' }}
               >
                 <Twitter className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden lg:inline">Twitter</span>
@@ -347,8 +350,8 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
                     style: { background: '#3D5A80', color: '#E0FBFC', border: '2px solid #D0D0D0' }
                   });
                 }}
-                className="px-2 py-2 text-white rounded-lg transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
-                style={{ backgroundColor: '#EE6C4D' }}
+                className="px-2 py-2 text-white rounded-full transition-opacity hover:opacity-90 flex items-center justify-center gap-1 text-xs sm:text-sm"
+                style={{ backgroundColor: '#293241' }}
               >
                 <MessageCircle className="w-4 h-4 flex-shrink-0" />
                 <span className="hidden lg:inline">WhatsApp</span>
@@ -390,8 +393,8 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
               />
               <button
                 type="submit"
-                className="px-4 sm:px-6 py-3 text-white rounded-lg transition-opacity hover:opacity-90 flex items-center gap-2 flex-shrink-0"
-                style={{ backgroundColor: '#3D5A80' }}
+                className="px-4 sm:px-6 py-3 text-white rounded-full transition-opacity hover:opacity-90 flex items-center gap-2 flex-shrink-0"
+                style={{ backgroundColor: '#293241' }}
               >
                 <Share2 className="w-4 h-4" />
                 <span className="hidden sm:inline">Gönder</span>
@@ -474,7 +477,12 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
                     {invite.status === 'active' ? (
                       <span 
                         className="px-3 py-1 rounded-full text-sm inline-flex items-center gap-1"
-                        style={{ backgroundColor: isDarkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(208, 208, 208, 0.5)', color: '#3D5A80' }}
+                        style={{ 
+                          backgroundColor: 'transparent',
+                          border: '1px solid',
+                          borderColor: '#4A6A90',
+                          color: isDarkMode ? '#e5e7eb' : '#4A6A90'
+                        }}
                       >
                         <Check className="w-3 h-3" />
                         Aktif
@@ -482,7 +490,12 @@ export function InvitePage({ onNavigate, onGoBack, language, setLanguage, onMenu
                     ) : (
                       <span 
                         className="px-3 py-1 rounded-full text-sm"
-                        style={{ backgroundColor: 'rgba(238, 108, 77, 0.1)', color: '#EE6C4D' }}
+                        style={{ 
+                          backgroundColor: 'transparent',
+                          border: '1px solid',
+                          borderColor: '#F07D60',
+                          color: isDarkMode ? '#F07D60' : '#EE6C4D'
+                        }}
                       >
                         Beklemede
                       </span>

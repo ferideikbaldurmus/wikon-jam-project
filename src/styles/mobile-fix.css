@@ -1,19 +1,27 @@
-/* Mobile bottom navigation fix */
+/* Mobil tarayıcılarda alt çubuk için düzeltme */
 body {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 html {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
-@media (max-width: 768px) {
+/* iPhone için güvenli alan düzeltmeleri */
+@supports (padding: max(0px)) {
+  body {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Mobil tarayıcılar için alt çubuk rengi */
+@media (max-width: 767px) {
   body::after {
     content: '';
     position: fixed;
-    bottom: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     height: 100px;
     background-color: #ffffff;
     z-index: -1;

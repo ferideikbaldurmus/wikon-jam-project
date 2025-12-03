@@ -93,8 +93,17 @@ export function AuthPage({ onLogin, onRegister, language, isDarkMode }: AuthPage
   const handleCardSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateID(cardID) && validateName(cardHolderName)) {
+      // Kart sahibinin adını parçalara ayır
+      const names = cardHolderName.trim().split(' ');
+      const firstName = names[0] || '';
+      const lastName = names.slice(1).join(' ') || '';
+      
       if (isLogin) {
         // Giriş yapıyorsa anasayfaya git
+        // Kart ile giriş yapıldığında kart sahibinin adını kullan
+        if (onRegister) {
+          onRegister(firstName, lastName, '', cardID);
+        }
         onLogin();
       } else {
         // Kayıt olduysa giriş sayfasına dön
@@ -104,8 +113,10 @@ export function AuthPage({ onLogin, onRegister, language, isDarkMode }: AuthPage
         setCardID('');
         setCardHolderName('');
         setTermsAccepted(false);
+        
+        // Kart ile kayıt olunduğunda kart sahibinin adını kullan
         if (onRegister) {
-          onRegister(firstName, lastName, email, cardID);
+          onRegister(firstName, lastName, '', cardID);
         }
       }
     }

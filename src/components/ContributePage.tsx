@@ -1,5 +1,5 @@
-import { Plus, BookOpen, MessageSquare, FileText, Image, Link, Coins, ArrowRight, PenLine, ShieldAlert } from 'lucide-react';
-import { useState } from 'react';
+import { Plus, BookOpen, MessageSquare, FileText, Link, Coins, ArrowRight, PenLine, ShieldAlert, Upload, X } from 'lucide-react';
+import { useState, useRef } from 'react';
 import { Language, useTranslation } from '../utils/translations';
 import { SearchHeader } from './SearchHeader';
 import { toast } from 'sonner@2.0.3';
@@ -28,6 +28,8 @@ export function ContributePage({ onNavigate, onGoBack, language, setLanguage, on
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState(language === 'TR' ? 'Akademik' : 'Academic');
   const [content, setContent] = useState('');
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   // Get role permissions
   const permissions = getRolePermissions(userRoleId);
@@ -276,38 +278,123 @@ export function ContributePage({ onNavigate, onGoBack, language, setLanguage, on
             </div>
 
             {/* Toolbar */}
-            <div className="flex items-center gap-2 p-3 rounded-lg">
+            <div className="flex items-center gap-2 p-3 rounded-lg" style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(61, 90, 128, 0.02)', border: '1px solid', borderColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(61, 90, 128, 0.05)' }}>
               <button 
                 type="button" 
                 className="p-2 rounded transition-colors" 
-                style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent'}
-                title="Resim Ekle"
-              >
-                <Image className="w-5 h-5" style={{ color: isDarkMode ? '#94a3b8' : '#000000' }} />
-              </button>
-              <button 
-                type="button" 
-                className="p-2 rounded transition-colors" 
-                style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent'}
+                style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(61, 90, 128, 0.05)' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(61, 90, 128, 0.05)'}
                 title="Link Ekle"
+                onClick={() => {
+                  const url = prompt('Link URL\'si girin:');
+                  if (url) {
+                    const text = prompt('Link metni girin:', 'Link');
+                    if (text) {
+                      setContent(prev => prev + `\n\n[${text}](${url})\n`);
+                      toast.success('Link eklendi!', {
+                        style: {
+                          background: '#3D5A80',
+                          color: 'white'
+                        },
+                        duration: 2000
+                      });
+                    }
+                  }
+                }}
               >
-                <Link className="w-5 h-5" style={{ color: isDarkMode ? '#94a3b8' : '#000000' }} />
+                <Link className="w-5 h-5" style={{ color: isDarkMode ? '#94a3b8' : '#3D5A80' }} />
               </button>
               <button 
                 type="button" 
                 className="p-2 rounded transition-colors" 
-                style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'transparent'}
-                title="Dosya Ekle"
+                style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(61, 90, 128, 0.05)' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(61, 90, 128, 0.05)'}
+                title="Bilgisayardan Yükle"
+                onClick={() => {
+                  if (fileInputRef.current) {
+                    fileInputRef.current.click();
+                  }
+                }}
               >
-                <FileText className="w-5 h-5" style={{ color: isDarkMode ? '#94a3b8' : '#000000' }} />
+                <Upload className="w-5 h-5" style={{ color: isDarkMode ? '#94a3b8' : '#3D5A80' }} />
               </button>
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                multiple
+                onChange={(e) => {
+                  const files = e.target.files;
+                  if (files && files.length > 0) {
+                    const fileList = Array.from(files);
+                    setUploadedFiles(prev => [...prev, ...fileList]);
+                    
+                    // Dosya bilgilerini içeriğe ekle
+                    let fileInfo = '\n\n### Yüklenen Dosyalar:\n';
+                    fileList.forEach(file => {
+                      fileInfo += `- 📎 ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
+                    });
+                    setContent(prev => prev + fileInfo);
+                    
+                    toast.success(`${fileList.length} dosya yüklendi!`, {
+                      style: {
+                        background: '#3D5A80',
+                        color: 'white'
+                      },
+                      duration: 2000
+                    });
+                  }
+                }}
+              />
             </div>
+            
+            {/* Uploaded Files List */}
+            {uploadedFiles.length > 0 && (
+              <div className="mt-4 p-4 rounded-lg border" style={{ 
+                borderColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(61, 90, 128, 0.15)',
+                backgroundColor: isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(61, 90, 128, 0.02)'
+              }}>
+                <h4 className="mb-2 flex items-center gap-2" style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>
+                  <FileText className="w-4 h-4" style={{ color: '#3D5A80' }} />
+                  Yüklenen Dosyalar ({uploadedFiles.length})
+                </h4>
+                <div className="space-y-2">
+                  {uploadedFiles.map((file, index) => (
+                    <div 
+                      key={index} 
+                      className="flex items-center justify-between p-2 rounded-lg" 
+                      style={{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'white' }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <FileText className="w-4 h-4" style={{ color: '#3D5A80' }} />
+                        <span style={{ color: isDarkMode ? '#e5e7eb' : '#293241' }}>{file.name}</span>
+                        <span className="text-xs" style={{ color: isDarkMode ? '#94a3b8' : '#9E9E9E' }}>
+                          ({(file.size / 1024).toFixed(1)} KB)
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        className="p-1 rounded-full hover:bg-red-100"
+                        onClick={() => {
+                          setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+                          toast.success('Dosya kaldırıldı', {
+                            style: {
+                              background: '#3D5A80',
+                              color: 'white'
+                            },
+                            duration: 2000
+                          });
+                        }}
+                      >
+                        <X className="w-4 h-4" style={{ color: '#EE6C4D' }} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Submit */}
             <div className="flex items-center justify-between">
@@ -319,8 +406,12 @@ export function ContributePage({ onNavigate, onGoBack, language, setLanguage, on
               </div>
               <button
                 type="submit"
-                className="px-8 py-3 rounded-lg text-white transition-opacity hover:opacity-90"
-                style={{ backgroundColor: '#3D5A80' }}
+                className="px-8 py-3 rounded-lg transition-all hover:opacity-90 active:scale-95"
+                style={{ 
+                  backgroundColor: isDarkMode ? '#3D5A80' : '#3D5A80',
+                  color: 'white',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   
