@@ -1,6 +1,27 @@
-# Wikon
+WiKon, Konya’daki üniversite öğrencilerinin bilgi ve deneyimlerini tek bir dijital platformda buluşturan,
+Wiki + Sözlük hibrit yapısına sahip, oyunlaştırılmış bir öğrenci bilgi paylaşım platformudur.
 
-Kültür ve tarih içerikli sosyal platform. Kullanıcıların bilgi paylaşımı yapabildiği, tartışmalara katılabildiği ve katkılarıyla puan kazanabildiği interaktif bir web uygulaması.
+Bu proje; öğrencilerin ders notları, mekan önerileri, barınma rehberleri, etkinlikler, burslar, staj ve şehir yaşamına dair içerikleri başlıklar altında paylaşmasını sağlar.
+Objektif bilgiler Wiki alanında, kişisel deneyimler ise Sözlük (yorum) alanında sunulur.
+
+Kullanıcılar yaptıkları katkılar karşılığında GençCoin kazanır, seviyelerini yükseltir ve bu coin’leri Konya Genç Kültür Kart puanına dönüştürerek gerçek hayatta somut ödüllere çevirebilir.
+
+## Proje Vizyonu:
+
+Konya’da yaşayan üniversite öğrencilerinin kolektif aklıyla büyüyen, yaşayan, üreten ve sürekli güncel kalan bir dijital bilgi evreni oluşturmak.
+
+## Projenin Amacı:
+
+Wikipedia’nın yapılandırılmış bilgi modelini,
+Ekşi Sözlük’ün dinamik tartışma kültürüyle birleştirerek:
+
+· Öğrencilerin bilgi üretmesini teşvik etmek
+
+· Katkıları oyunlaştırma sistemiyle ödüllendirmek
+
+· GençCoin kazandırmak
+
+· Coin’leri Konya Genç Kültür Kart puan sistemine dönüştürerek somut değere çevirmek
 
 ## Özellikler
 
@@ -11,7 +32,6 @@ Kültür ve tarih içerikli sosyal platform. Kullanıcıların bilgi paylaşım�
 - **Liderlik Tablosu**: En aktif kullanıcıların gösterildiği sıralama
 - **Genç Kültür Kartı Entegrasyonu**: Kart sahipleri için özel avantajlar
 - **Karanlık/Açık Tema**: Kullanıcı tercihine göre tema seçeneği
-- **Dil Desteği**: Çoklu dil desteği
 - **AI Chatbot**: Yardım ve bilgi almak için yapay zeka destekli sohbet botu
 
 ## Teknolojiler
