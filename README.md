@@ -42,6 +42,7 @@ Ekşi Sözlük’ün dinamik tartışma kültürüyle birleştirerek:
 - Tailwind CSS
 - Shadcn UI Bileşenleri
 - Vite
+- Figma Make
 
 ## Başlangıç
 
