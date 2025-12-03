@@ -16,13 +16,13 @@ Konya’da yaşayan üniversite öğrencilerinin kolektif aklıyla büyüyen, ya
 Wikipedia’nın yapılandırılmış bilgi modelini,
 Ekşi Sözlük’ün dinamik tartışma kültürüyle birleştirerek:
 
-· Öğrencilerin bilgi üretmesini teşvik etmek
+- Öğrencilerin bilgi üretmesini teşvik etmek
 
-· Katkıları oyunlaştırma sistemiyle ödüllendirmek
+- Katkıları oyunlaştırma sistemiyle ödüllendirmek
 
-· GençCoin kazandırmak
+- GençCoin kazandırmak
 
-· Coin’leri Konya Genç Kültür Kart puan sistemine dönüştürerek somut değere çevirmek
+- Coin’leri Konya Genç Kültür Kart puan sistemine dönüştürerek somut değere çevirmek
 
 ## Özellikler
 
