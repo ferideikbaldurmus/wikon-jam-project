@@ -174,7 +174,7 @@ export default function App() {
 
   // Show main app if authenticated
   return (
-    <div className="min-h-screen pb-[env(safe-area-inset-bottom)]" style={{ backgroundColor: isDarkMode ? '#0f172a' : '#F9FAFF' }}>
+    <div className="min-h-screen" style={{ backgroundColor: isDarkMode ? '#0f172a' : '#F9FAFF' }}>
       <div className="flex gap-2 p-2 lg:gap-6 lg:p-6 max-w-[1800px] mx-auto">
         <div className="hidden lg:block rounded-2xl overflow-hidden shadow-lg sticky top-6 self-start h-[calc(100vh-3rem)]">
           <Sidebar 

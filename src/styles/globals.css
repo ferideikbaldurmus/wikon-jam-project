@@ -2,11 +2,6 @@
 
 :root {
   --font-size: 16px;
-  /* Safe area insets */
-  --sat: env(safe-area-inset-top, 0px);
-  --sar: env(safe-area-inset-right, 0px);
-  --sab: env(safe-area-inset-bottom, 0px);
-  --sal: env(safe-area-inset-left, 0px);
   /* 60% - Background (Dominant) */
   --background: #E0FBFC;
   --card: #ffffff;
@@ -157,9 +152,6 @@
 
   body {
     @apply bg-background text-foreground;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    padding-bottom: var(--sab);
   }
 }
 
